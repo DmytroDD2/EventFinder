@@ -1,11 +1,10 @@
 from enum import Enum
-from typing import Union, Optional
-from datetime import datetime
+from typing import Union, Optional, Any, Dict
+from datetime import datetime, date
 
-from fastapi import Header
-from pydantic import BaseModel, Field, field_validator
-
-
+from fastapi import Header, HTTPException
+from pydantic import BaseModel, Field, field_validator, ValidationError, model_validator
+from pydantic.v1 import root_validator
 
 
 class Category(Enum):
@@ -16,8 +15,8 @@ class Category(Enum):
     other = "Other"
 
 class BaseFilter(BaseModel):
-    start_date: Optional[datetime] = None
-    end_date: Optional[datetime] = None
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
     location: Optional[str] = None
     category: Optional[Category] = None
     search_term: Optional[str] = None
@@ -25,12 +24,30 @@ class BaseFilter(BaseModel):
     max_price: Optional[float] = None
     page: int = 1
     per_page: int = 10
+
+    @model_validator(mode='before')
+    def validate_atts(cls, data: Any):
+        start_date = data.get("start_date")
+        end_date = data.get("end_date")
+        min_price = data.get("min_price")
+        max_price = data.get("max_price")
+
+        if start_date and end_date and start_date > end_date:
+            raise HTTPException(status_code=400, detail="start_date should not be greater than end_date")
+
+        if min_price is not None and max_price is not None and min_price > max_price:
+            raise HTTPException(status_code=400, detail="min_price should not be greater than max_price")
+
+        return data
+
+
+
 class BaseEventFirst(BaseModel):
     id: int
     creator: int
 
 
-class BaseEvent(BaseModel):
+class ResponseEvent(BaseModel):
     category: Category
     name: str
     venue: str | None = None
@@ -38,6 +55,9 @@ class BaseEvent(BaseModel):
     price: float | None = None
     total_tickets: int | None = None
     data: Optional[Union[datetime, None]] = Field(default=None)
+
+
+class BaseEvent(ResponseEvent):
 
 
     @field_validator("data")

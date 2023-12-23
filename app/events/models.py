@@ -20,9 +20,3 @@ class Event(Base):
     created_by = relationship("User", back_populates="created_events")
     tickets = relationship("Tickets", back_populates="event", overlaps='events,tickets', cascade="all, delete-orphan")
     review = relationship("Review", back_populates="event", overlaps="review,event", cascade="all, delete-orphan")
-    @property
-    def get_ticket_count(self):
-        return self.total_tickets
-
-    def update_ticket_count(self, new_count):
-        self.total_tickets = new_count

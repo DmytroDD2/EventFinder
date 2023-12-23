@@ -13,7 +13,8 @@ load_dotenv()
 # print(f"DATABASE_URL from os.getenv: {os.getenv('DATABASE_URL')}", '='*100)
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 #
-engine = create_engine(SQLALCHEMY_DATABASE_URL,  echo=True)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+#,  echo=True
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()

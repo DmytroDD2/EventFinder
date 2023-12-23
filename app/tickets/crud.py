@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 from app.users.models import User
 from app.events.models import Event
@@ -11,6 +12,7 @@ from sqlalchemy.orm import joinedload
 
 from app.events.crud import find_event
 from app.users.crud import find_user
+from app.friends.models import Friendship
 
 
 def add_ticket(db, event: Event, user: User):
@@ -45,6 +47,24 @@ def get_user_tickets(db, user_id: int):
     if user_tickets is None:
         raise HTTPException(status_code=404, detail="You don`t have tickets yet")
     return user_tickets
+
+def get_friend_tickets(db, user_id: int):
+    friend_events = db.query(
+        Event.name.label("event_name"),
+        Event.id.label("event_id"),
+        User.username.label("user_name"),
+        Event.data.label("data"),
+        Event.id.label("creator"),
+        Event.description.label("description"),
+        Event.price.label("price"),
+        Friendship.friend_id.label("friend_id")
+    ). \
+        join(Tickets, Tickets.event_id == Event.id). \
+        join(User, Tickets.user_id == User.id). \
+        join(Friendship, User.id == Friendship.friend_id). \
+        filter(Friendship.user_id == user_id). \
+        all()
+    return friend_events
 
 
 def find_ticket(db: Session, ticket_id: int):

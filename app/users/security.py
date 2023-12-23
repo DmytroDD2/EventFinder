@@ -40,7 +40,6 @@ def get_current_user_token(token: str = Header(..., description="The authenticat
 
     except JWTError:
         raise credentials_exception
-    print(user)
     return user
 
 
@@ -50,7 +49,7 @@ def permission(admin: UserToken):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="insufficient level of access"
         )
-    return
+    return True
 
 
 MAIL_CONF = ConnectionConfig(

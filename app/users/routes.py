@@ -9,7 +9,7 @@ from app.users.schemas import BaseUser, UserLogin, ChangeUserDate, ChangePasswor
 from app.db.session import get_db
 from app.users.security import get_password_hash, get_current_user_token, permission, fastmail, AsyncEmailSender
 from app.users.crud import create_user, get_user_exist, authenticate_user, change_data_user, change_password_user, \
-    increase_access, recharge_user_account
+    increase_access, recharge_user_account, find_user
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from jose import JWTError, jwt
 
@@ -28,6 +28,9 @@ async def login_access_token(form_data: UserLogin, db: Session = Depends(get_db)
     token = jwt.encode(token_data, "your_secret_key",  algorithm="HS256")
     return {"access_token": token, "token_type": "bearer"}
 
+@router.get("", response_model=BaseUser, status_code=200)
+async def get_user_data(db: Session = Depends(get_db), user: UserToken = Depends(get_current_user_token)):
+    return find_user(db, user.id)
 
 @router.put("/change", tags=["users"], status_code=status.HTTP_200_OK)
 def edit_user_data(
@@ -94,6 +97,6 @@ async def recharge_account(
     user: UserToken = Depends(get_current_user_token)
 ):
 
-    recharge, balance = recharge_user_account(db,recharge_data, user.id)
+    recharge, balance = recharge_user_account(db, recharge_data, user.id)
 
     return {"message": f"Account successfully recharged: {recharge}. New balance: {balance}"}

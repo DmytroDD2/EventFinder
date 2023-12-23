@@ -1,11 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, func
 from sqlalchemy.orm import Session
 from app.events.models import Event
 from app.events.schemas import BaseEvent, BaseFilter, EventParams
 from app.notifications.crud import add_notification_edit_event
-
-
+from datetime import date
 def add_event(db: Session, event: BaseEvent, creator: int):
     db_event = Event(**event.model_dump(), creator=creator)
     db.add(db_event)
@@ -46,13 +45,22 @@ def get_all_events(db, event_pars: EventParams):
     db_events = db.query(Event).offset(offset).limit(event_pars.per_page).all()
     return db_events
 
+def get_my_event(db, event_pars: EventParams, my_id: int):
+    offset = (event_pars.page - 1) * event_pars.per_page
+    db_event = db.query(Event).filter(Event.creator == my_id).offset(offset).limit(event_pars.per_page).all()
+    return db_event
+
 
 def filter_event(db: Session, details: BaseFilter):
+
     query = db.query(Event)
     filters = []
 
     if details.start_date:
-        filters.append(and_(Event.data >= details.start_date, Event.data <= details.end_date))
+        filters.append(Event.data >= details.start_date)
+
+    if details.end_date:
+        filters.append(func.date(Event.data) <= details.end_date)
 
     if details.location:
         filters.append(Event.venue == details.location)

@@ -22,7 +22,7 @@ def add_notification_edit_event(db, event: Event):
         event_date = "not yet known"
         event_time = "not yet known"
 
-    message = f'Change in event {event.name}.  Start date {event_date} at {event_time}'
+    message = f'Change in event {event.name}.  Start date {event_date} at {event_time}. Location: {event.venue}'
     tickets = db.query(Tickets.id).filter(Tickets.event_id == event.id).all()
     notifications = [Notification(ticket_id=ticket_id[0], message=message) for ticket_id in tickets]
     db.add_all(notifications)
@@ -38,7 +38,7 @@ def add_notification(db, ticked_id: id, event: Event):
         event_date = "not yet known"
         event_time = "not yet known"
 
-    message = f'You are registered for the event{event.name}.Start date{event_date} at {event_time}'
+    message = f'You are registered for the event: {event.name}.Start date{event_date} at {event_time}. Location: {event.venue}'
     db_notification = Notification(ticket_id=ticked_id, message=message)
     db.add(db_notification)
     db.commit()
@@ -64,6 +64,7 @@ def get_notification(db: Session, notification_id: int, user_id: int):
     if db_notification and not db_notification.is_read:
         db_notification.is_read = True
         db.commit()
+        db.refresh(db_notification)
 
     return db_notification
 

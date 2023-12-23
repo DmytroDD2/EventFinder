@@ -2,8 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.events.crud import find_event
-from app.tickets.crud import add_ticket, get_user_tickets, find_ticket, del_ticket, get_all_ticket, validate_purchase
-from app.tickets.schemas import BaseTicketCreate
+from app.tickets.crud import add_ticket, get_user_tickets, find_ticket, del_ticket, get_all_ticket, validate_purchase, \
+    get_friend_tickets
+from app.tickets.schemas import BaseTicketCreate, BaseTicketCreate2
 from app.users.security import get_current_user_token
 from app.tickets.models import Tickets
 from app.users.schemas import UserToken
@@ -21,9 +22,14 @@ async def get_all_user_ticket(db: Session = Depends(get_db),
     return tickets_us
 
 
+@router.get("/friends", response_model=list[BaseTicketCreate2], status_code=200)
+async def get_all_friend_tickets(db: Session = Depends(get_db),
+                                 user: UserToken = Depends(get_current_user_token)):
+    return get_friend_tickets(db, user.id)
+
+
 @router.post("/{event_id}/reserve",  response_model=BaseTicketCreate, status_code=201)
 async def create_event(event_id: int,
-                       # ticket: BaseTicketCreate,
                        db: Session = Depends(get_db),
                        user_client: UserToken = Depends(get_current_user_token)):
 

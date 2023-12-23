@@ -67,5 +67,4 @@ def recharge_user_account(db: Session, recharge_data: RechargeRequest, user_id: 
     db.commit()
 
     return recharge_data.amount, user.balance
-    # Збереження історії транзакцій (опціонально)
-    # save_transaction_history(user.id, recharge_data.amount, "Recharge")
+
