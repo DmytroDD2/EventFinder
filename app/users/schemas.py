@@ -25,6 +25,9 @@ class BaseUser(BaseModel):
     email: EmailStr
     role: Role
 
+
+class UserData(BaseUser):
+    balance: float
     class Config:
         from_attributes = True
 

@@ -1,0 +1,1 @@
+0 14 06 * * * docker exec my_web_container python /code/app/notifications/auto_create_notifications.py

@@ -5,7 +5,8 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy.orm import Session
 from app.main import app
 from app.users.models import User
-from app.users.schemas import BaseUser, UserLogin, ChangeUserDate, ChangePassword, Role, UserToken, RechargeRequest
+from app.users.schemas import BaseUser, UserLogin, ChangeUserDate, ChangePassword, Role, UserToken, RechargeRequest, \
+    UserData
 from app.db.session import get_db
 from app.users.security import get_password_hash, get_current_user_token, permission, fastmail, AsyncEmailSender
 from app.users.crud import create_user, get_user_exist, authenticate_user, change_data_user, change_password_user, \
@@ -28,9 +29,11 @@ async def login_access_token(form_data: UserLogin, db: Session = Depends(get_db)
     token = jwt.encode(token_data, "your_secret_key",  algorithm="HS256")
     return {"access_token": token, "token_type": "bearer"}
 
-@router.get("", response_model=BaseUser, status_code=200)
+
+@router.get("", response_model=UserData, status_code=200)
 async def get_user_data(db: Session = Depends(get_db), user: UserToken = Depends(get_current_user_token)):
     return find_user(db, user.id)
+
 
 @router.put("/change", tags=["users"], status_code=status.HTTP_200_OK)
 def edit_user_data(
