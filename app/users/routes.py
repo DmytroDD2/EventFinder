@@ -1,21 +1,24 @@
 import json
-from typing import Tuple
+import os
+from typing import Tuple, Optional
 
+from dotenv import load_dotenv
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy.orm import Session
 from app.main import app
 from app.users.models import User
 from app.users.schemas import BaseUser, UserLogin, ChangeUserDate, ChangePassword, Role, UserToken, RechargeRequest, \
-    UserData
+    UserData, ResetPassword
 from app.db.session import get_db
-from app.users.security import get_password_hash, get_current_user_token, permission, fastmail, AsyncEmailSender
+from app.users.security import get_password_hash, get_current_user_token, permission, fastmail, AsyncEmailSender, \
+    mail_data
 from app.users.crud import create_user, get_user_exist, authenticate_user, change_data_user, change_password_user, \
-    increase_access, recharge_user_account, find_user
+    increase_access, recharge_user_account, find_user, reset_pysword
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from jose import JWTError, jwt
 
 router = APIRouter()
-
+load_dotenv()
 
 @router.post("/token", tags=["users"])
 async def login_access_token(form_data: UserLogin, db: Session = Depends(get_db)):
@@ -36,7 +39,7 @@ async def get_user_data(db: Session = Depends(get_db), user: UserToken = Depends
 
 
 @router.put("/change", tags=["users"], status_code=status.HTTP_200_OK)
-def edit_user_data(
+async def edit_user_data(
         user_data: ChangeUserDate,
         user: UserToken = Depends(get_current_user_token),
         db: Session = Depends(get_db)
@@ -45,8 +48,8 @@ def edit_user_data(
     return change_data_user(db, user.id, user_data)
 
 
-@router.put("/password", tags=["users"], status_code=status.HTTP_200_OK)
-def edit_password(
+@router.patch("/password", tags=["users"], status_code=status.HTTP_200_OK)
+async def edit_password(
         password: str,
         user: UserToken = Depends(get_current_user_token),
         db: Session = Depends(get_db)
@@ -57,38 +60,41 @@ def edit_password(
 
 
 @router.patch("/role", tags=["users"], status_code=status.HTTP_200_OK, response_model=None)
-def edit_role(user_id: int,
+async def edit_role(user_id: int,
               db: Session = Depends(get_db),
-              admin: UserToken = Depends(get_current_user_token)):
+              admin: UserToken = Depends(get_current_user_token)
+):
 
     permission(admin)
     return increase_access(db, user_id)
 
 
+@router.patch("/password-reset", tags=["users"], status_code=status.HTTP_200_OK,response_model=None)
+async def request_password_reset(user: ResetPassword, db: Session = Depends(get_db)):
+    user.new_password = get_password_hash(user.new_password)
+    return reset_pysword(db, user)
+
+
 @router.post("/register", tags=["users"], response_model=BaseUser, status_code=201)
 async def register_user(user: BaseUser, db: Session = Depends(get_db)):
-    existing_user = get_user_exist(db, user.username)
-    if existing_user:
-        raise HTTPException(
-            status_code=400,
-            detail="Username already registered"
-        )
+    existing_user = get_user_exist(db, user.username, user.email)
 
     hashed_password = get_password_hash(user.password)
     user.password = hashed_password
 
     db_user = create_user(db, user=user)
 
-    message = MessageSchema(
-        subject="Registration was successful",
-        recipients=[user.email],
-        body=f"{user.first_name}! You have successfully registered on our website.",
-        subtype="plain"
+    if mail_data():
+        message = MessageSchema(
+            subject="Registration was successful",
+            recipients=[user.email],
+            body=f"{user.first_name}! You have successfully registered on our website.",
+            subtype="plain"
 
-    )
+        )
 
-    async with AsyncEmailSender(message):
-        pass
+        async with AsyncEmailSender(message):
+            pass
 
     return db_user
 

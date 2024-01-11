@@ -11,9 +11,15 @@ This project is an API application that allows users to create and search for ev
     ```
 
 2. **Create a `.env` file** with the following content:
+
     ```env
+    # Optional: Provide email credentials if you want to enable email notifications.
+    # Note: These fields are optional. You can leave them empty or not specify them at all.
+    # If left empty or unspecified, email notifications will be disabled.
     MAIL_USERNAME_ENV=your_email@gmail.com
     MAIL_APP_PASSWORD_ENV=your_secure_password_here
+
+    # Database connection URL
     DATABASE_URL=postgresql://your_user:your_password@db/your_db_name
     ```
 

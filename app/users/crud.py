@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from app.users.models import User
-from app.users.schemas import BaseUser, Role, ChangeUserDate, ChangePassword, RechargeRequest
+from app.users.schemas import BaseUser, Role, ChangeUserDate, ChangePassword, RechargeRequest, ResetPassword
 from typing import Optional
 from app.users.security import pwd_context
 
@@ -27,8 +27,21 @@ def create_user(db:Session, user: BaseUser):
     return db_user
 
 
-def get_user_exist(db: Session, username: str):
-    return db.query(User).filter(User.username == username).first()
+def get_user_exist(db: Session, username: str, email: str = None):
+    existing_user_by_username = db.query(User).filter(User.username == username).first()
+    if existing_user_by_username:
+        raise HTTPException(
+            status_code=409,
+            detail=f"User with the name '{username}' already exists."
+        )
+
+    existing_user_by_email = db.query(User).filter(User.email == email).first()
+    if existing_user_by_email:
+        raise HTTPException(
+            status_code=409,
+            detail=f"User with the email '{email}' already exists."
+        )
+
 
 
 def change_data_user(db: Session, user_id: int, new_user: ChangeUserDate):
@@ -46,6 +59,19 @@ def change_data_user(db: Session, user_id: int, new_user: ChangeUserDate):
 def change_password_user(db: Session, user_id: int, password: str):
     user_now = db.query(User).filter(User.id == user_id).first()
     user_now.password = password
+    db.commit()
+    db.refresh(user_now)
+    return user_now
+
+
+def reset_pysword(db: Session, user: ResetPassword):
+    user_now = db.query(User).filter(User.username == user.username,
+                                     User.password_reset_question == user.password_reset_question
+                                     ).first()
+    if not user_now:
+        raise HTTPException(status_code=404, detail="Invalid credentials. Please check your information.")
+
+    user_now.password = user.new_password
     db.commit()
     db.refresh(user_now)
     return user_now

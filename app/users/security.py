@@ -51,20 +51,26 @@ def permission(admin: UserToken):
         )
     return True
 
+def mail_data():
+    required_variables = ["MAIL_USERNAME_ENV", "MAIL_APP_PASSWORD_ENV"]
+    my_mail = list(map(os.getenv, required_variables))
+    if all(my_mail):
 
-MAIL_CONF = ConnectionConfig(
-    MAIL_USERNAME=os.getenv("MAIL_USERNAME_ENV"),
-    MAIL_PASSWORD=os.getenv("MAIL_APP_PASSWORD_ENV"),
-    MAIL_FROM=os.getenv("MAIL_USERNAME_ENV"),
-    MAIL_PORT=465,
-    MAIL_SERVER="smtp.gmail.com",
-    MAIL_STARTTLS=False,
-    MAIL_SSL_TLS=True,
-    USE_CREDENTIALS=True,
-    VALIDATE_CERTS=True
-)
+        MAIL_CONF = ConnectionConfig(
+            MAIL_USERNAME=my_mail[0],
+            MAIL_PASSWORD=my_mail[1],
+            MAIL_FROM=os.getenv("MAIL_USERNAME_ENV"),
+            MAIL_PORT=465,
+            MAIL_SERVER="smtp.gmail.com",
+            MAIL_STARTTLS=False,
+            MAIL_SSL_TLS=True,
+            USE_CREDENTIALS=True,
+            VALIDATE_CERTS=True
+        )
+        return MAIL_CONF
 
-fastmail = FastMail(MAIL_CONF)
+
+fastmail = FastMail(mail_data())
 
 
 class AsyncEmailSender:

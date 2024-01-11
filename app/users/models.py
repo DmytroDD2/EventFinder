@@ -20,7 +20,7 @@ class User(Base):
     created_events = relationship("Event", back_populates="created_by", cascade="all, delete-orphan")
     review = relationship("Review", back_populates="users", overlaps="user, user_review", cascade="all, delete-orphan")
     tickets = relationship("Tickets", back_populates="user",  overlaps="user,user_tickets", cascade="all, delete-orphan")
-    # friendships = relationship("Friendship", backref="users", cascade="all, delete-orphan")
+    password_reset_question = Column(String)
     friends = relationship(
         "User",
         secondary=lambda: Friendship.__table__,
