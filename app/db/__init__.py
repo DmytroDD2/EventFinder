@@ -10,11 +10,19 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# print(f"DATABASE_URL from os.getenv: {os.getenv('DATABASE_URL')}", '='*100)
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
-#
+SQLALCHEMY_DATABASE_URL = "postgresql://ps_user:password@db/event_finder_db"
+
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 #,  echo=True
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
+
+
+
+
+# user = os.getenv("POSTGRES_USER")
+# password = os.getenv("POSTGRES_PASSWORD")
+# postgres_db = os.getenv("POSTGRES_DB")
+#
+# SQLALCHEMY_DATABASE_URL = f"postgresql://{user}:{password}@db/{postgres_db}"

@@ -75,6 +75,6 @@ def get_all_read_notifications(db: Session, user_id: int, read: bool):
                        filter(User.id == user_id, Notification.is_read == read).all())
     detail = "No messages have been read" if read else "Mark all messages as read"
     if not db_notification:
-        raise HTTPException(status_code=204, detail=detail)
+        raise HTTPException(status_code=404, detail=detail)
 
     return db_notification

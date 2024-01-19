@@ -19,6 +19,7 @@ async def add_friend(friend_id: int,
                      db: Session = Depends(get_db),
                      user: UserToken = Depends(get_current_user_token)):
     friend = add_friendship(db, user.id, friend_id)
+
     if not friend:
         raise HTTPException(status_code=400, detail="Could not add friend")
     return friend

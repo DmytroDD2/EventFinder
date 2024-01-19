@@ -6,6 +6,10 @@ from app.events.schemas import BaseEvent, BaseFilter, EventParams
 from app.notifications.crud import add_notification_edit_event
 from datetime import date
 def add_event(db: Session, event: BaseEvent, creator: int):
+    if db.query(Event).filter(Event.name == event.name).first():
+        raise HTTPException(
+            status_code=409,
+            detail=f"Event name '{event.name}'is already taken. Choose a different name.")
     db_event = Event(**event.model_dump(), creator=creator)
     db.add(db_event)
     db.commit()

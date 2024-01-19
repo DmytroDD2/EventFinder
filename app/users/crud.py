@@ -64,6 +64,13 @@ def change_password_user(db: Session, user_id: int, password: str):
     return user_now
 
 
+def existing_user_by_email(db: Session, email: str):
+    user_now = (db.query(User).filter(User.email == email).first())
+    if not user_now:
+        raise HTTPException(status_code=404, detail=f"User with the email '{email}' does not exist.")
+    return user_now
+
+
 def reset_pysword(db: Session, user: ResetPassword):
     user_now = db.query(User).filter(User.username == user.username,
                                      User.password_reset_question == user.password_reset_question

@@ -13,45 +13,27 @@ This project is an API application that allows users to create and search for ev
 2. **Create a `.env` file** with the following content:
 
     ```env
-    # Optional: Provide email credentials if you want to enable email notifications.
-    # Note: These fields are optional. You can leave them empty or not specify them at all.
-    # If left empty or unspecified, email notifications will be disabled.
-    MAIL_USERNAME_ENV=your_email@gmail.com
-    MAIL_APP_PASSWORD_ENV=your_secure_password_here
+     # Optional: To enable email notifications, provide email credentials.
+     # Note: You can leave these fields empty or not specify them at all, as they are optional.
+     # If provided, the application will send a reset token to the specified email address when a password reset is requested.
+     # If these fields are left empty or unspecified, the application will handle password reset without sending an email notification.
 
-    # Database connection URL
-    DATABASE_URL=postgresql://your_user:your_password@db/your_db_name
+     MAIL_USERNAME=your_email@gmail.com
+     MAIL_APP_PASSWORD=your_secure_password_here
     ```
 
 3. **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-
-4. **Configure PostgreSQL:**
-    - **Using Docker:**
-      Update your `docker-compose.yml` file to include the PostgreSQL environment variables:
-      ```yaml
-      services:
-        db:
-          image: postgres
-          restart: always
-          environment:
-            POSTGRES_PASSWORD: your_password
-            POSTGRES_USER: your_user
-            POSTGRES_DB: your_db_name
-          ports:
-            - "[HOST_PORT]:[CONTAINER_PORT]" # Replace HOST_PORT and CONTAINER_PORT as needed
-      ```
-
-5. **Set up a Virtual Environment:**
+4. **Set up a Virtual Environment:**
     - Before installing the project dependencies, it's recommended to create a virtual environment:
       ```bash
       python -m venv myenv
       source myenv/bin/activate  # On Windows, use: myenv\Scripts\activate
       ```
 
-6. **Run using Docker:**
+5. **Run using Docker:**
     ```bash
     docker-compose up --build
     ```
@@ -70,8 +52,11 @@ To automate the process of generating notifications for upcoming events, which i
   - Provide a name and description for your task.
   - Set the desired trigger (e.g., daily, weekly, etc.).
   - Select "Start a program" as the action.
-  - In the "Program/script" field, browse and select the docker executable (usually located at `C:\Program Files\Docker\Docker\resources\bin\docker.exe` or similar).
-  - In the "Add arguments" field, enter `exec my_web_container python /code/app/notifications/auto_create_notifications.py`.
+  - In the "Program/script" field, enter the path to your .bat file. For example:
+  - In the "Program/script" field, enter the path to your .bat file. For example:
+    `C:\Users\YourUsername\Documents\EventFinder\run_notifications.bat`
+  - In the "Start in (optional)" field, enter the directory where your Python script should run. For example:
+     `C:\Users\YourUsername\Documents\EventFinder`
   - Finish the setup process.
   
-Once the task is added, it will run the specified command at the scheduled time, automating the process within your Event Finder Application.
+Once the task is added, it will run the specified .bat file at the scheduled time, automating the process within your Event Finder Application.

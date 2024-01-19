@@ -18,13 +18,13 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_USER: my_user
+      POSTGRES_USER: ps_user
       POSTGRES_DB: event_finder_db
+
     ports:
       - "5433:5432"
     networks:
       - my_network
-
 networks:
   my_network:
     driver: bridge

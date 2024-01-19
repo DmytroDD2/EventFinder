@@ -44,7 +44,8 @@ def get_user_tickets(db, user_id: int):
         join(User, Tickets.user_id == User.id). \
         filter(User.id == user_id). \
         all()
-    if user_tickets is None:
+    if not user_tickets:
+
         raise HTTPException(status_code=404, detail="You don`t have tickets yet")
     return user_tickets
 

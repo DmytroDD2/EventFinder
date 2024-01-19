@@ -1,5 +1,7 @@
+from datetime import timedelta, datetime
+
 from passlib.context import CryptContext
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer, APIKeyHeader
 from fastapi import Depends, HTTPException, status, Header
 from jose import JWTError, jwt
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
@@ -22,8 +24,19 @@ def get_password_hash(password: str):
 SECRET_KEY = "your_secret_key"
 ALGORITHM = "HS256"
 
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+REFRESH_TOKEN_EXPIRE_DAYS = 7
 
-def get_current_user_token(token: str = Header(..., description="The authentication token")):#token: str = Depends(oauth2_scheme),
+api_key_header = APIKeyHeader(name="Authorization")
+
+
+def create_token(data: dict, expires_delta: timedelta) -> str:
+    expire = datetime.utcnow() + expires_delta
+    data.update({"exp": expire})
+    return jwt.encode(data, SECRET_KEY, algorithm=ALGORITHM)
+
+
+def get_current_user_token(token:  str = Depends(api_key_header)):#token: str = Depends(oauth2_scheme),
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

@@ -8,11 +8,20 @@ from app.users.crud import find_user
 router = APIRouter()
 
 def add_friendship(db, user_id: int, friend_id: int):
+    friend_user = db.query(User).filter(User.id == friend_id).first()
+
+    if not friend_user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"User with ID {friend_id} not found"
+        )
+
     friendship = Friendship(user_id=user_id, friend_id=friend_id)
     db.add(friendship)
     db.commit()
     db.refresh(friendship)
     return friendship
+
 
 def remove_friendship(db, user_id: int, friend_id: int):
     friendship = db.query(Friendship).filter(
