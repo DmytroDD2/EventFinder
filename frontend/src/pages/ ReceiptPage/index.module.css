@@ -1,0 +1,120 @@
+
+.container {
+    margin-top: 3rem;
+}
+
+.container > h2 {
+    margin-bottom: 0;
+    font-size: 1.2em;
+    
+}
+
+.icon {
+    height: 3.3rem;
+}
+
+
+
+.subtext {
+    font-size: 0.8rem;
+    color: #6B7280;
+    margin: 0;
+    margin-top: 0.3rem;
+}
+
+.receipt {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 2rem;
+    gap: 0.5rem;
+    border: solid 1px #F3F4F6;
+    margin-bottom: 1rem;
+    border-radius: 7px;
+}
+
+
+
+
+.amount, .balance {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.amount > strong {
+    font-size: 1.4rem;
+    color: #111827;
+}
+
+.balance > strong {
+    font-size: 0.9rem;
+    color: #111827;
+}
+.receipt span {
+    color: #6B7280;
+}
+
+.transaction, .date {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+    font-size: 0.8rem;
+    gap:5rem;
+}
+
+.transaction > .span_name, .date > .span_name {
+    color: #6B7280;
+}
+.transaction > span, .date > span {
+    color: #111827;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 1.1rem;
+    gap: 0.2rem;
+    color: white;
+    background-color: #FF4F81;
+    border: none;
+    border-radius: 7px;
+}
+
+.button > svg {
+    margin-top: -0.2rem;
+    fill: white;
+}
+
+.dark h2,
+.dark .amount > strong,
+.dark .balance > strong{
+    color: white;
+}
+
+.dark .receipt {
+    background-color: #1E1E1E;
+    border: none;
+}
+
+.dark .subtext,
+.dark .balance > span,
+.dark .amount > span,
+.dark .transaction > .span_name,
+.dark .date > .span_name {
+    color: #A0A0A0;
+}
+
+.dark .transaction > span,
+.dark .date > strong {
+    color: white;
+}

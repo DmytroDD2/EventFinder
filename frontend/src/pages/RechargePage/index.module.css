@@ -1,0 +1,204 @@
+
+.container {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    max-width: 25rem;;
+    padding: 0;
+   
+    gap: 0.5rem;
+   
+}
+.content > h3 {
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    margin-top: 1rem;
+}
+
+.form {
+    width: 100%;
+    padding: 0;
+}
+
+.header > *{
+    padding: 0;
+    margin: 0;
+    padding: 0.1rem;
+    width: 100%;
+}
+
+.header > p {
+    font-size: 0.9rem;
+    color: #6B7280;
+    margin: 0;
+}
+
+.wallet_svg {
+    height: 3.1rem !important;
+    fill: #FF4F81;
+  
+}
+
+
+.current_balance {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #F9FAFB;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    border-radius: 7px;
+    gap: 0.5rem;
+}
+
+.current_balance > p {
+    color: #6B7280;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight:200;
+    
+}
+.buttons {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.amountButton, .buttons > button {
+    width: 12.1rem;
+    height: 2.3rem;
+    margin-bottom: 0.9rem;
+    border-radius: 7px;
+    border: solid 1px #E5E7EB;
+    background-color: white;
+    padding-top: 0.3rem;
+    font-size: 1.08rem;
+    font-weight: bold;
+    
+}
+.amountButton:active, .cancel:active {
+    background-color: #E5E7EB;
+    /* border-color: #FF4F81;
+    color: #FF4F81; */
+}
+
+.amount_buttons {
+    display: flex;
+    
+    justify-content: space-between; 
+    flex-wrap: wrap;
+    
+}
+
+.fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    gap: 0.3rem;
+}
+.fieldset > label {
+    text-align: left;
+    color: #4B5563;
+    font-size: 0.8rem;
+}
+
+.fieldset > input {
+    width: 100%;
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 7px;
+    border: solid 1px #E5E7EB;
+    background-color: white;
+    font-size: 1rem;
+}
+
+.fieldset > input::placeholder {
+    font-size: 0.8rem;
+}
+
+.fieldset > input:focus {
+    outline: none;
+    border: solid 1px #FF4F81;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+.buttons { 
+    margin-top: 1rem;
+    
+}
+
+.buttons > .cancel {
+    background-color: #F3F4F6;
+    color: #4B5563;
+ 
+}
+
+.buttons > .cancel:active {
+    color: #7a7678;
+}
+
+.buttons >.recharge {
+    background-color: #FF4F81;
+    border-color: #FF4F81;
+    color: white;
+}
+
+
+
+.dark .current_balance,
+.dark .amountButton,
+.dark .cancel{
+    color: white;
+    background-color: #242424;
+    border: solid 1px #50545d;
+}
+
+.dark .header > h2 {
+    color: white;
+}
+
+
+.dark fieldset > input {
+    background-color: #2A2A2A;
+    color: white;
+    border-color: #6B7280;
+}
+
+.dark .amountButton:active {
+ 
+    color: #FF4F81;
+ 
+}
+
+.dark .current_balance > p,
+.dark .fieldset > label,
+.dark .header > p {
+    color: #b4b6ba;
+}

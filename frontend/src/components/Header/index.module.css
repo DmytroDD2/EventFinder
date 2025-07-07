@@ -1,0 +1,279 @@
+
+
+.head_st {
+    position: sticky;
+    top: 0;
+    display: flex;
+    /* gap: 10px; */
+    align-items: center;
+    justify-content:space-between;
+    padding: 0.5rem;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+}
+
+.dark_h {
+    background-color: #121212;
+    border-bottom: solid 0.1rem #808080;
+}
+
+.nav{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav div {
+    width: 100%;
+    display: flex;
+}
+
+
+
+.logo{
+    margin: 0px;
+    font-size: 2rem;
+    padding: 0px;
+
+}
+
+.white_logo {
+    margin: 0px;
+    font-size: 2rem;
+    padding: 0px;
+    color: white;
+    
+}
+
+.common {
+    text-decoration: none;
+    width: 6.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    /* gap: 1rem */
+}
+
+
+.dark_inactive {
+    color: #E0E0E0;
+    composes: common; 
+}
+
+.dark_active {
+    color: #FF4F81;
+    font-weight: bold;
+    composes: common; 
+}
+
+.darKinactive {
+    composes: common; 
+}
+
+.active {
+    color: #FF4F81;
+    border-bottom: 0.3rem solid #FF4F81;
+    font-weight: bold;
+    composes: common;
+}
+
+.inactive {
+    color: black;
+    composes: common;
+}
+
+
+.adminActive {
+    color: #FF4F81;
+    border-radius: 20px;
+    font-weight: bold;
+    border:none
+   ;
+   
+}
+
+
+.adminActive  .adminBadge {
+    display: flex;
+    padding: 0.2rem 0.8rem;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #FFE8EE;
+    border: solid 0.1rem #FF4F81; 
+    border-radius: 20px;
+    
+    
+}
+
+.dark_h .adminActive .adminBadge {
+    /* background-color: #f2ebed; */
+    background-color: inherit;
+    color:#ff7a99
+
+}
+
+/* .adminActive > p {
+    
+    margin: 0;
+} */
+
+
+.auth {
+   
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    max-width: auto;
+    height: 2.5rem;
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    gap: 1rem    
+    
+}
+
+
+
+.common_log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 10rem;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s; /* Плавний перехід */
+}
+
+.login {
+    color: #FF4F81;
+    border: 0.15rem solid #FF4F81;
+    composes: common_log;
+    
+}
+
+.signup {
+    color: white;
+    background-color: #FF4F81;
+    border: 0.3rem solid #FF4F81;
+    composes: common_log;
+}
+
+.dark_login {
+    color: #E0E0E0;
+    border: 0.15rem solid #808080;
+    composes:common_log;
+}
+
+.dark_signup {
+    color: #E0E0E0;
+    background-color: #E0E0E0;
+    border: 0.3rem solid #E0E0E0;
+    
+}
+
+.login:hover, .dark_login:hover{
+   
+    text-decoration: underline; 
+}
+
+.signup:hover {
+    text-decoration: underline; 
+    background-color: #FF3B6A; /* Зміна кольору фону при наведенні */
+}
+
+
+.logout { 
+    background-color: #FF3B6A;
+    border: none;
+    padding: 0.2rem 0.4rem;
+    text-shadow: 0 0 0.3rem #eeeaeb, 0 0 0.2rem #eaeeea; 
+    border-radius: 45%;
+    height: 2rem;
+    font-weight: bold;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .head_st {
+    
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    /* overflow: hidden; */
+   
+  }
+
+  .nav {
+    /* position: absolute;
+    top: 100%;
+    */
+    
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .logo_m {
+    width: 100%;
+    text-align: start;
+    margin-bottom: 1rem;
+   
+  }
+  .common,
+  .dark_inactive,
+  .dark_active,
+  .darKinactive,
+  .active,
+  .inactive {
+    /* width: 100%; */
+    justify-content: center;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .auth {
+    position: absolute;
+   
+    right: 0;
+    z-index: 1;
+    flex-wrap: wrap;
+    /* flex-direction: row; */
+    /* align-items: flex-start; */
+    /* width: 100%; */
+    /* padding: 0;
+    gap: 0.5rem; */
+  }
+
+  .common_log,
+  .login,
+  .signup,
+  .dark_login,
+  .dark_signup {
+    width: auto;
+    max-width: 100%;
+  
+    justify-content: center;
+  }
+
+  .logo,
+  .white_logo {
+    font-size: 1.5rem;
+  }
+
+  .logout {
+    align-self: flex-start;
+  }
+
+  .adminActive .adminBadge {
+    padding: 0.2rem 0.6rem;
+  }
+}

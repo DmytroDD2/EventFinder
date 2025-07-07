@@ -1,0 +1,130 @@
+.container {
+    background-color: #F9FAFB;
+    padding: 1rem;
+    border-radius: solid 1px #E5E7EB;
+}
+
+
+
+
+
+.icon {
+    fill: #9CA3AF;
+}
+
+.image_container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border-radius: 7px;
+}
+
+
+
+.avatar {
+    border-radius: 7px;
+    padding-top: 66.66%; 
+    
+}
+
+.button_upload {
+    color: white;
+    border: none;
+    width: 100%;
+    background-color: #FF4081;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-top: 0.8rem;
+}
+
+
+.avatar {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 7px;
+    font-size: 7rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    
+}
+
+
+.link {
+    display: flex;
+    background-color: white;
+    justify-content: space-between;
+    border: solid 1px #E5E7EB;
+    align-items: center;
+    font-size: 1;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: black;
+    
+}
+
+.link > .link_text {
+    display: flex;
+    align-items: start;
+    gap: 0.5rem;
+}
+
+.password_section {
+    text-align: start;
+    border-radius: 7px;
+  
+}
+
+.image_container > p {
+    margin: 0;
+    margin-top: 0.3rem;
+    color: #6B7280;
+    font-size: 0.9rem;
+
+}
+
+.password_section > h3 {
+    padding-left: 0.5rem;
+    
+    
+    
+}
+.link_text:active {
+    color: #FF4081;
+}
+
+.icon:active
+
+.dark .image_container > p {
+    color: #808080;
+}
+.dark {
+    /* background-color: #121212; */
+    background-color: inherit;
+    border-radius: 1px;
+}
+
+
+.dark .password_section {
+    background-color: #333333;
+}
+
+
+.dark .link {
+    background-color: #333333;
+    color: #808080;
+    border: none;
+}
+
+.dark .password_section > h3 {
+    padding-top: 0.5rem;
+    color: white;
+}
+
+
+

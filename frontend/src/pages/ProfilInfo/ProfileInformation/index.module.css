@@ -1,0 +1,146 @@
+.form_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex: 1;
+    border: solid 1px #E5E7EB;
+    border-radius: 10px;
+    padding-top: 1rem;
+    gap: 1rem;
+    padding-left: 1rem;
+}
+
+.fieldset_container {
+    display: flex;
+    border: none;
+    text-align: left;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-right: 0;
+}
+
+
+.fieldset_container > legend {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-left: 0;
+    margin-bottom: 0.5rem;
+}
+
+
+.input_container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+   
+    border-radius: 10px;
+    width: 100%;
+    max-width: 19rem;
+    
+    min-height: 3rem;
+    max-height: 2.62rem;
+    margin: 0;
+    
+  }
+
+.input_container> label {
+    
+    margin-bottom: 0.5rem;
+    color: #4B5563;
+  }
+
+.input_container > input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    color: #4B5563;
+    border: solid 1px #E5E7EB;
+    color: black;
+    font-size: 1rem;
+}
+
+
+.buttons_container {
+    text-align: right;
+    
+}
+
+.cancel_button, .submit_button {
+    border: solid 1px #E5E7EB;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 7px;
+    background-color: white;
+;
+    margin: 0.5rem;
+}
+
+.submit_button {
+    background-color: #FF4F81;
+    border: none;
+    color: white;
+}
+
+.dark .fieldset_container > legend {
+    color: white;
+}
+
+.dark {
+    border: solid 1px #808080;
+    
+   
+}
+
+
+.dark .input_container > label {
+    color: #b3aeae;
+}
+
+
+
+.dark .input_container > input, .dark_fieldset > div > input {
+    background-color: #333333;
+    border: none;
+    color: #bcb3b3;
+    
+}
+
+.dark .input_container > input:focus, .dark_fieldset > div > input:focus {
+    border: 1px solid #FF4F81;
+    outline: none; 
+}
+
+.dark .input_container > label {
+    color: white;
+}
+
+
+.dark .cancel_button {
+    background-color: inherit;
+    border-color: #808080 ;
+    color: #afabab;
+}
+
+
+.dark .cancel_button:active {
+    color:#FF4F81;
+    
+}
+
+
+@media (max-width: 768px) {
+    .buttons_container {
+        text-align: start;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        
+        
+    }
+    .cancel_button {
+        color: #1d1c1c;
+        font-weight: bold;
+    }
+}

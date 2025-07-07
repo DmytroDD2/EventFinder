@@ -1,0 +1,19 @@
+:root {
+
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  /* overflow: hidden; */
+
+  overflow-y: scroll;
+  scrollbar-width: 0px; /* Firefox */
+  -ms-overflow-style: none; 
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

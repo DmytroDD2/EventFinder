@@ -1,0 +1,103 @@
+
+.profile_nav{
+    padding: 0.5rem;
+    width: 100%;
+    padding-left: 0;
+    position: sticky;
+    top: 3rem;
+    z-index: 1000;
+    background-color: white
+}
+
+.dark_profile_nav{
+    background-color: black;
+
+}
+
+.profile_nav ul{
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 1rem; 
+    padding-left: 0; 
+    gap: 2.24rem;    
+}
+
+.nav_link {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    text-decoration: none;
+    color: #4B5563; 
+    gap:0.3rem;
+    /* padding: 0 1rem 0.7rem 1rem;  */
+}
+
+.nav_link:first{
+    padding-left: 0;
+}
+
+.icon{
+    transition: none;
+    fill: #4B5563;
+
+}
+.active {
+    color: #FF4F81;
+
+    
+    
+}
+
+.active .icon {
+    fill: #FF4F81;
+}
+
+
+
+.dark_active {
+    color: #FF4F81;
+    border-bottom: solid 2px #FF4F81;
+   
+}
+
+
+.dark_active .icon {
+    fill: #FF4F81;
+}
+
+
+.dark_inactive{
+    color: #b3b0b0;
+}
+
+
+
+
+.balck_li{
+    border-bottom: solid 2px #FF4F81;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+ 
+
+    .profile_nav> ul{
+        overflow-x: auto;
+        overflow-y: hidden;    
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding: 1rem;
+    }
+
+
+    .profile_nav > ul {
+        scrollbar-color: #f0f0f0 black;
+        scrollbar-width: thin;
+    }
+
+}

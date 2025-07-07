@@ -1,0 +1,73 @@
+.dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
+.uploadWrapper {
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .dropzone {
+    padding: 1rem;
+    border: 2px dashed #aaa;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+  }
+  
+  .previewGrid {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    
+  }
+  
+  .previewImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+
+.previewItem {
+    position: relative;
+    display: inline-block;
+  }
+
+.removeButton {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #FF4F81;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+
+.dark .dropzone{
+    background-color: #333333;
+}
+
+.dark .dropzone > p {
+  color: #bcb3b3;
+}

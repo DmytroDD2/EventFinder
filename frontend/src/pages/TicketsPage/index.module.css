@@ -1,0 +1,19 @@
+.container {
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+    
+}
+
+.dark {
+  color:#FFFF;
+}
+
+
+.dark > .no_tickets {
+    color: #FFFF;
+}
+

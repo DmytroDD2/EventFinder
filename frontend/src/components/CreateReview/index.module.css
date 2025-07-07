@@ -1,0 +1,136 @@
+.container {
+  /* width: 27rem; */
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif; 
+  text-align: start;
+
+  color: #222;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #222;
+}
+
+.subLabel {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  color: #222;
+}
+
+.divider {
+  height: 1px;
+  background-color: #eee;
+  margin: 20px 0;
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  color: #222;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.submitButton {
+  background-color: #FF4081;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  max-width: 15rem;
+}
+
+/* --- DARK MODE OVERRIDES --- */
+.dark .container {
+  background: #23272f;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+.dark .title,
+.dark .sectionTitle {
+  color: #fff;
+}
+
+.dark .label,
+.dark .subLabel {
+  color: #b3aeae;
+}
+
+.dark .input,
+.dark .textarea {
+  background: #333333;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+.dark .divider {
+  background-color: #444;
+}
+
+.dark .description {
+  color: #b3aeae;
+}
+
+.dark .submitButton {
+  background-color: #FF4081;
+  color: #fff;
+}
+
+.dark .input:focus,
+.dark .textarea:focus {
+  border: 1px solid #FF4081;
+  outline: none;
+}

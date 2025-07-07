@@ -1,0 +1,171 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+.input_grup {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+   
+}
+
+.form_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    max-width: 30rem;
+    text-align: left;
+}
+
+.title {
+    margin: 0;
+}
+
+.description {
+    margin: 0;
+    color: #4B5563;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.input_tickets_price {
+    display: flex;
+    gap: 1rem;
+}
+
+
+.input_category {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    color: #4B5563;
+    border: solid 1px #bdbec0;
+    color: black;
+    font-size: 1rem;
+}
+
+
+
+.input_grup > input, .datePicker {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    color: #4B5563;
+    border: solid 1px #bdbec0;
+    color: black;
+    font-size: 1rem;
+    
+}
+
+
+
+
+.dark_form .input_grup > label,
+.dark_form .title {
+    color:#FFFFFF;;
+}
+
+.dark_form .description {
+    color: #a8a2a2;
+    
+}
+
+
+
+.dark_form .input_grup > input,
+.dark_form .datePicker,
+.dark_form .textarea_description,
+.dark_form .input_category
+ {
+    background-color: #333333;
+    border: none;
+    color: #bcb3b3;   
+}
+
+.dark_form .input_grup > input:focus,
+.dark_form .datePicker:focus,
+.dark_form .textarea_description:focus,
+.dark_form .input_category:focus{
+    border: 1px solid #FF4F81;
+    outline: none; 
+}
+
+.button_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    
+}
+
+.button_container > button {
+    flex: 1;
+    height: 2.4rem;
+    border-radius: 7px;
+    font-size: 1.3rem;
+    padding: 0.5rem;
+
+}
+
+.dark_form .cancel_button {
+    background-color: inherit;
+    border-color: #808080 ;
+    color: #afabab;
+}
+
+
+.dark_form .cancel_button:active {
+    color:#FF4F81;
+    
+}
+
+
+
+.button_submit {
+    background-color: #FF4F81;
+    border: none;
+    color: white;
+   
+}
+
+
+.textarea_description {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    color: #4B5563;
+    border: solid 1px #bdbec0;
+    color: black;
+    font-size: 1rem;
+    height: 10rem;
+  
+}
+
+
+.datePicker {
+    width: 100%;
+    
+}
+
+
+.error {
+    color: #ee0303;
+    margin: 0.2rem;
+    margin-left: 4px;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 100%;
+}
+  
+
+.dark_fieldset .error {
+    color: #FF4081;
+}

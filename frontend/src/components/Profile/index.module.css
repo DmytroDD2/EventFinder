@@ -1,0 +1,152 @@
+.container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    max-height: 8rem;
+    font-family: 'Inter', sans-serif;
+}
+
+
+.avatar {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    font-size: 4rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+}
+
+
+.avatar::after {
+    content: ""; 
+    bottom: 0.3rem; 
+    right: 0.4rem; 
+    width: 2rem; 
+    height: 2rem; 
+    background-image: url('../../assets/icons/picture.png');
+    background-size: contain;
+    background-repeat: no-repeat; 
+    opacity: 0.8;
+    z-index: 100;
+    position: absolute;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    font-weight: bold;
+    padding: 1rem;
+    gap:0.4em;
+}
+
+
+.name {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+}
+
+.email {
+    margin: 0;
+    padding: 0;
+    color: #4B5563
+    
+}
+
+.dark .email,
+.dark .balance,
+.dark .name {
+    color: #eae2e2;
+} 
+
+
+
+.balance {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.balance > img, .balance > p {
+    margin: 0.1rem;
+
+}
+.balance > svg {
+    height: 2rem;
+    padding-bottom: 0.1rem;
+    fill: #4B5563;
+    
+}
+
+
+.balance_with_button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    
+    
+}
+
+.buttons {
+    display: flex;
+    
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.button {
+    background-color: #FF4F81;
+    border: none;
+    font-size: 1rem;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 7px;
+    text-decoration: none;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        max-height: 12rem;
+        padding: 0.5rem;
+       
+        
+    }
+    .balance_with_button{
+        /* gap: 0; */
+        justify-content: start;
+      
+        
+    }
+    .avatar {
+        font-size: 2rem;
+        height: 9rem;
+    }
+    .avatar::after {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .buttons {
+        flex-direction: column;
+        }
+    .name {
+        font-size: 1.2rem;
+    }
+    .email {
+        font-size: 0.9rem;
+    }
+}

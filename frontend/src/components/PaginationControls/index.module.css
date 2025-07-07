@@ -1,0 +1,45 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background: #FF4D8D;
+  color: white;
+  border-color: #FF4D8D;
+}
+
+/* Темна тема */
+.pagination.dark button {
+  background: #333;
+  color: white;
+  border-color: #555;
+}
+
+.pagination.dark button:hover:not(:disabled) {
+  background: #444;
+}
+
+.pagination.dark button.active {
+  background: #FF4D8D;
+  border-color: #FF4D8D;
+}

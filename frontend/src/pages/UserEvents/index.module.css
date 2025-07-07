@@ -1,0 +1,32 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+
+
+.button_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.button {
+    background-color: #FF4F81;
+    border: none;
+    font-size: 1rem;
+    color: white;
+    padding: 0.7rem;
+    border-radius: 7px;
+    text-decoration: none;
+    margin-left: 1rem;
+    
+}

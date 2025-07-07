@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 1rem; 
+    font-family: 'Inter', sans-serif;
+}
+
+

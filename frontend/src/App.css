@@ -1,0 +1,161 @@
+
+* {
+  box-sizing: border-box; 
+}
+
+#root {
+  /* display: flex;
+  justify-content: center; */
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
+  max-width: 1200px;
+}
+
+.dark .light{
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height:100vh;
+  background-color: antiquewhite;
+}
+
+
+.dark {
+  background-color: black;
+}
+
+.light {
+  background-color: #FFFFFF;
+}
+
+
+main > h1 {
+  background-color: #FFFFFF;
+}
+
+.input-password{
+  position: relative;
+  width: 100%;
+}
+
+.eye-icon {
+  position: absolute;
+  font-size: 1.25rem;
+  cursor: pointer;
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
+.dark .eye-icon {
+  color: #FFFFFF;
+}
+
+.error-message {
+  color: red; 
+  font-size: 1rem;
+  margin-top: 0.5rem; 
+  font-weight: bold;
+  
+}
+
+
+ /* castom selector */
+.custom-select-container { 
+  display:flex;
+  text-align: center;
+  position: relative; 
+  width: 100%; 
+  border: solid 1px #030303; 
+}
+
+.selected {
+  display: flex;
+  align-items: center; /* по вертикалі */
+  justify-content:space-between; /* по горизонталі */
+  /* border: solid 1px #030303; */
+  padding: 0;
+  width: 100%;
+  line-height: 1;
+  /* background: red; */
+  font-family: 'Inter', sans-serif;
+
+}
+
+
+
+.custom-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 100; 
+  background-color: #ffffff;
+}
+
+.selected-option {
+  padding: 6px 20px;
+  cursor: pointer;
+  background-color: #FF4D8D;
+}
+
+.custom-select-container li {
+  list-style-type: none;
+  padding: 6px 20px;
+  cursor: pointer;
+  
+ 
+}
+
+.custom-select-container li:hover {
+  background-color: rgba(237, 113, 165, 0.2); 
+  color: inherit; 
+}
+
+
+.arrow-down {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.custom-select-container.open .arrow-down {
+  transform: rotate(45deg);
+}
+
+/* dark custom selection */
+
+
+.dark .arrow-down {
+  border-color: #9CA3AF;
+}
+
+.dark .open .arrow-down {
+  border-color: white;
+}
+
+.dark .open .selected{
+  color: white;
+}
+
+
+.dark .custom-options {
+  background-color: #808080;
+  color: #1e1b1b;
+}
+
+.dark .selected-option {
+  background-color: #2A2A2A;
+  color: #FF4D8D;
+}

@@ -1,12 +1,21 @@
 # Event Finder Application
 
-This project is an API application that allows users to create and search for events, register for them, leave reviews, and much more.
+This project is a full-stack API application that allows users to create and search for events, register for them, leave reviews, and much more.
+
+## Technologies Used
+
+- **Frontend: React, TypeScript, HTML, CSS Modules, Zustand, React Motion, Yarn 
+- **Backend:** FastAPI, PostgreSQL, Alembic, Celery, RabbitMQ  
+- **Testing:** Pytest (async support, coverage)  
+- **Docker & Docker Compose:** For containerized local developmen
+
+---
 
 ## Installation and Setup
 
 1. **Clone the repository:**
     ```bash
-    git clone [repository URL]
+    git clone https://github.com/DmytroDD2/EventFinder.git
     cd EventFinderApplication
     ```
 
@@ -22,41 +31,33 @@ This project is an API application that allows users to create and search for ev
      MAIL_APP_PASSWORD=your_secure_password_here
     ```
 
-3. **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. **Set up a Virtual Environment:**
-    - Before installing the project dependencies, it's recommended to create a virtual environment:
-      ```bash
-      python -m venv myenv
-      source myenv/bin/activate  # On Windows, use: myenv\Scripts\activate
-      ```
-
-5. **Run using Docker:**
+3. **Run using Docker:**
     ```bash
     docker-compose up --build
     ```
+    This will start:
 
-## Documentation
+     - PostgreSQL database  
+     - RabbitMQ message broker  
+     - Backend API server (FastAPI + Uvicorn)  
+     - Frontend app (React)  
+     - Celery worker  
+   
+   > **Note:** On the first run (after migrations), the database will be automatically seeded with initial test data.  
+   > This is handled by a seeding script inside the backend which creates example users, events, and other necessary records.
+---
 
-After running the project, you can view the documentation at: `http://localhost:8000/docs`.
 
-## Scheduled Tasks on Windows
+## Scheduled Tasks
 
-To automate the process of generating notifications for upcoming events, which involves querying the database for events scheduled for the next day and then creating notifications based on that data, you can use the Windows Task Scheduler.
+The application uses Celery Beat to schedule periodic tasks, such as sending daily notifications for upcoming events. Celery Beat automatically triggers these tasks at the specified time intervals defined in your Celery configuration. No manual setup (such as Windows Task Scheduler) is required.
 
-- **Add Task to Task Scheduler:**
-  - Open the Windows Task Scheduler.
-  - Navigate to "Create Basic Task" in the right panel.
-  - Provide a name and description for your task.
-  - Set the desired trigger (e.g., daily, weekly, etc.).
-  - Select "Start a program" as the action.
-  - In the "Program/script" field, enter the path to your .bat file. For example:
-  - In the "Program/script" field, enter the path to your .bat file. For example:
-    `C:\Users\YourUsername\Documents\EventFinder\run_notifications.bat`
-  - In the "Start in (optional)" field, enter the directory where your Python script should run. For example:
-     `C:\Users\YourUsername\Documents\EventFinder`
-  - Finish the setup process.
-  
-Once the task is added, it will run the specified .bat file at the scheduled time, automating the process within your Event Finder Application.
+## Frontend
+
+Once the project is running, the frontend application will be available at:  
+[http://localhost:3000](http://localhost:3000)
+
+## API Documentation
+
+After running the project, you can view the interactive API docs (Swagger UI) at:  
+[http://localhost:8000/docs](http://localhost:8000/docs)
