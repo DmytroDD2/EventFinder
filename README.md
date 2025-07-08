@@ -16,7 +16,7 @@ This project is a full-stack API application that allows users to create and sea
 1. **Clone the repository:**
     ```bash
     git clone https://github.com/DmytroDD2/EventFinder.git
-    cd EventFinder
+    cd EventFinderApplication
     ```
 
 2. **Create a `.env` file** with the following content:
@@ -33,7 +33,7 @@ This project is a full-stack API application that allows users to create and sea
 
 3. **Run using Docker:**
     ```bash
-    docker compose up --build
+    docker-compose up --build
     ```
     This will start:
 
@@ -61,3 +61,18 @@ Once the project is running, the frontend application will be available at:
 
 After running the project, you can view the interactive API docs (Swagger UI) at:  
 [http://localhost:8000/docs](http://localhost:8000/docs)
+
+
+
+
+## Run Backend Tests
+
+To run backend tests inside the Docker container:
+
+```bash
+docker compose up -d test_db && \
+sleep 3 && \
+docker compose run --rm backend pytest && \
+docker compose down
+
+```
