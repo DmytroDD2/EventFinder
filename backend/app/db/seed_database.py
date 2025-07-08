@@ -54,6 +54,8 @@ async def seed_database():
             users.append(user)
         db.commit()
 
+        for user in users:
+            db.refresh(user)
 
         for _ in range(30):
             user1, user2 = random.sample(users, 2)

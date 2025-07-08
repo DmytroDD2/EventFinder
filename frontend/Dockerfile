@@ -1,12 +1,11 @@
 # Build Stage
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 WORKDIR /app
 COPY package.json yarn.lock ./
 
 RUN set -eux \
-    & apk add \
-        --no-cache \
-        yarn 
+    && apk add --no-cache yarn \
+    && yarn install --frozen-lockfile
 COPY . .
 RUN yarn run build
 
