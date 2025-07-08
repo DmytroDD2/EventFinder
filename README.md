@@ -6,7 +6,7 @@ This project is a full-stack API application that allows users to create and sea
 
 - **Frontend: React, TypeScript, HTML, CSS Modules, Zustand, React Motion, Yarn 
 - **Backend:** FastAPI, PostgreSQL, Alembic, Celery, RabbitMQ  
-- **Testing:** Pytest (async support, coverage)  
+- **Testing:** Pytest (async support, coverage: **89%**)   
 - **Docker & Docker Compose:** For containerized local developmen
 
 ---
@@ -68,11 +68,23 @@ After running the project, you can view the interactive API docs (Swagger UI) at
 ## Run Backend Tests
 
 To run backend tests inside the Docker container:
+   
+   ```bash
+   docker compose up -d test_db && \
+   sleep 3 && \
+   docker compose run --rm backend pytest --cov && \
+   docker compose down
+   ```
+   
+   This will:
 
-```bash
-docker compose up -d test_db && \
-sleep 3 && \
-docker compose run --rm backend pytest && \
-docker compose down
-
-```
+      - Start the test_db container
+      
+      - Wait a few seconds to ensure DB is ready
+      
+      - Run pytest with code coverage
+      
+      - Shut everything down after tests complete
+      
+   🔍 Latest test coverage: 89%
+---
