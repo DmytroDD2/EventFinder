@@ -16,7 +16,7 @@ This project is a full-stack API application that allows users to create and sea
 1. **Clone the repository:**
     ```bash
     git clone https://github.com/DmytroDD2/EventFinder.git
-    cd EventFinderApplication
+    cd EventFinder
     ```
 
 2. **Create a `.env` file** with the following content:
