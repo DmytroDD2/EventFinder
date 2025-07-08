@@ -12,6 +12,8 @@ from app.users.schemas import UserToken, Role
 import os
 from dotenv import load_dotenv
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from app.db.session import get_db
+from app.users.models import User
 load_dotenv()
 
 
@@ -58,6 +60,8 @@ def get_current_user_token(token: HTTPAuthorizationCredentials = Security(http_b
 
     token = token.credentials
 
+    check_db = get_db()
+    db = next(check_db)
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
@@ -65,10 +69,15 @@ def get_current_user_token(token: HTTPAuthorizationCredentials = Security(http_b
 
         if user is None:
             raise credentials_exception
+        check_token = db.query(User).filter(User.id == user.id).first()
+        if check_token is None:
+            raise credentials_exception
 
+        return user
     except InvalidTokenError:
         raise credentials_exception
-    return user
+    finally:
+        db.close()
 
 
 def permission(admin: UserToken):
