@@ -92,6 +92,14 @@ async def register_user(user: BaseCreateUser, db: Session = Depends(get_db)):
     user.password = hashed_password
 
     db_user = create_user(db, user)
+    access_token = create_token(
+        {"id": user.id, "role": user.role.value}, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+    refresh_token = create_token(
+        {"id": user.id, "role": user.role.value}, timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
+    )
+
+    token = {"access_token": access_token, "refresh_token": refresh_token, "token_type": "bearer"}
     if mail_data():
         message = {
             "subject": "Registration was successful",
@@ -99,16 +107,9 @@ async def register_user(user: BaseCreateUser, db: Session = Depends(get_db)):
             "body": f"{user.first_name}! You have successfully registered on our website.",
             "subtype": "plain",
         }
-        print("=" * 100)
-        send_email_task.delay(message)
-        access_token = create_token(
-            {"id": user.id, "role": user.role.value}, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        )
-        refresh_token = create_token(
-            {"id": user.id, "role": user.role.value}, timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
-        )
 
-        token = { "access_token": access_token, "refresh_token": refresh_token, "token_type": "bearer"}
+        send_email_task.delay(message)
+
 
     return {"user": db_user, "token":token}
 
