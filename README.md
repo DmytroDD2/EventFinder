@@ -33,7 +33,7 @@ This project is a full-stack API application that allows users to create and sea
 
 3. **Run using Docker:**
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
     This will start:
 
