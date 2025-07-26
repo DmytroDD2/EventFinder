@@ -3,14 +3,10 @@ services:
   frontend:
     build:
       dockerfile: ./Dockerfile
-      context: ./frontend  # Вказуємо на папку frontend
+      context: ./frontend
     ports:
       - "3000:80"
-    volumes:
-      - .:/app
-        - /app/node_modules
-    environment:
-      NODE_ENV: development
+
     stdin_open: true
     tty: true
     networks:
@@ -18,7 +14,7 @@ services:
 
   backend:
     build:
-      context: ./backend  # Вказуємо на папку backend
+      context: ./backend
       dockerfile: Dockerfile
     command: /bin/sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
     env_file:
@@ -29,6 +25,20 @@ services:
       - "8000:8000"
     depends_on:
       - db
+
+    networks:
+      - app_network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+
 
     networks:
       - app_network
@@ -91,6 +101,7 @@ services:
 
 volumes:
   postgres_data:
+  frontend_dist:
 
 networks:
   app_network:

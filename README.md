@@ -55,7 +55,7 @@ The application uses Celery Beat to schedule periodic tasks, such as sending dai
 ## Frontend
 
 Once the project is running, the frontend application will be available at:  
-[http://localhost:3000](http://localhost:3000)
+[http://localhost:80](http://localhost:3000)
 
 ## API Documentation
 

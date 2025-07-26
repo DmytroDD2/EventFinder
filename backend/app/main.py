@@ -11,7 +11,7 @@ async def lifespan(app: FastAPI):
     await seed_database()
     yield
 
-app = FastAPI(docs_url="/docs", redoc_url=None, lifespan=lifespan)
+app = FastAPI(docs_url="/docs", redoc_url=None, lifespan=lifespan, prefix="/api")
 app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
 from app.users import routes as user_routes

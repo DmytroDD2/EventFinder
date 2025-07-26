@@ -4,8 +4,8 @@ import { refreshToken } from './auth';
 
 
 
-// const url = 'http://0.0.0.0:8000/'
-const url = " http://172.20.10.4:8000/"
+const url = 'http://0.0.0.0:80/api/'
+
 const api = axios.create({
   baseURL: url,
   headers: {
